@@ -1,0 +1,98 @@
+﻿@{
+    ViewData["Title"] = "Тестирование экстрасенсов";
+}
+@section Scripts
+    {
+    <script>
+        var x = document.getElementById('initform');
+        var y = document.getElementById('init');
+        var z = document.getElementById('forminput');
+
+        function hideForm(n) {
+            if (n == -1) {
+                z.style.display = "none";
+            }
+            if (n == 1) {
+                x.style.display = "none";
+            }
+            y.style.display = "none";
+
+        }
+
+        function showForm() {
+            y.style.display = "block";
+            x.style.display = "none";
+        }
+        
+
+    </script>
+
+
+}
+<style>
+    .hidden {
+        display: none;
+    }
+
+    .single {
+        display: none;
+    }
+
+        .single.active {
+            display: block;
+        }
+</style>
+<body onload="hideForm(@ViewBag.flag)">
+
+    <h2>Тестирование экстрасенсов</h2>
+    <div>
+        @ViewBag.number
+
+        <form name='form1' method="post" id="initform">
+            <label>Загадайте двузначное число</label><br />
+            <input type="number" name="number" id="init" /><br />
+            <input type='hidden' name='number' value='0'>
+            <input type="submit" value="Число загадано" onclick="showForm()" />
+        </form>
+    </div>
+    <div>
+        <form method="post" id="forminput" (required)>
+            <input type="number" name="number" placeholder="Введите число" min="10" max="99" required />
+            <input type="submit" value="Отправить" />
+        </form>
+    </div>
+
+    <div>
+        <h2>@ViewBag.value</h2>
+        
+
+    </div>
+    <div>
+        <h3>@ViewBag.text</h3>
+    </div>
+    
+    <div>
+        @ViewBag.draw
+
+
+
+        <h3>@ViewBag.currentInfo</h3>
+        @ViewBag.draw
+    </div>
+    <div>
+        <h4>@ViewBag.hystory</h4>
+        @foreach (string line in ViewBag.lines)
+        {
+            <p>@line</p>
+        }
+
+    </div>
+
+    <div style="width:800px;
+         border-top:3px solid #9EC1D4;
+         border-bottom: dotted 3px #9EC1D4;
+         padding-left:10px">
+        <h4>@ViewBag.currentRating</h4>
+    </div>
+
+</body>
